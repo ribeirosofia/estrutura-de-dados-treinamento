@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "83ecbdbf-3a61-4653-8f3c-a99499016f84",
+		"name": "Rede Social",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3331893"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();",
+							"pm.collectionVariables.set(\"token\", response.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"credencial\": \"maria@email.com\", \"senha\": \"senha123\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrar Usuario",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\"nomeUsuario\": \"maria isis\", \"email\": \"maria@email.com\", \"senha\": \"senha123\"},\n    {\"nomeUsuario\": \"Livia elise\" , \"email\": \"livia@email.com\", \"senha\": \"senha123\"},\n    {\"nomeUsuario\": \"Joao guilherme\", \"email\": \"joao@email.com\", \"senha\": \"senha123\"}\n]"
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/registrar-lote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"registrar-lote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Home Geral",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYSBpc2lzIiwiaWQiOjEsImVtYWlsIjoibWFyaWFAZW1haWwuY29tIiwiaWF0IjoxNzY5MDI3NDY0LCJleHAiOjE3NjkxMTM4NjR9.QEsMxxUlTYJt62tKcajzQEUa1IBgeCLH5sMSX1x_iJ0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer TOKEN_AQUI"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/home",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"home"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Solicita Amizade",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYSBpc2lzIiwiaWQiOjEsImVtYWlsIjoibWFyaWFAZW1haWwuY29tIiwiaWF0IjoxNzY4NjkyMTE1LCJleHAiOjE3Njg3Nzg1MTV9.zPzdoF_iKOBwpLh6bleeNzj6MyzdCirEHyJqjZB1MRg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"idRemetente\":1, \"idDestinatario\": 2, \"mensagem\": \"Olá, Livia gostaria de me conectar!\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/solicitacoes-amizade",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"solicitacoes-amizade"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aceita Solicitacao",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYSBpc2lzIiwiaWQiOjEsImVtYWlsIjoibWFyaWFAZW1haWwuY29tIiwiaWF0IjoxNzY5MDI3NDY0LCJleHAiOjE3NjkxMTM4NjR9.QEsMxxUlTYJt62tKcajzQEUa1IBgeCLH5sMSX1x_iJ0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYSBpc2lzIiwiaWQiOjEsImVtYWlsIjoibWFyaWFAZW1haWwuY29tIiwiaWF0IjoxNzY4NjkyMTE1LCJleHAiOjE3Njg3Nzg1MTV9.zPzdoF_iKOBwpLh6bleeNzj6MyzdCirEHyJqjZB1MRg"
+					},
+					{
+						"key": "Cookie",
+						"value": "JSESSIONID=FD1443187257F6B69C45EA6F39E91F63"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"idRemetente\":1, \"idDestinatario\": 2, \"mensagem\": \"Conexao aceita\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/solicitacoes-amizade/aceitar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"solicitacoes-amizade",
+						"aceitar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exibe Solicitacoes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYSBpc2lzIiwiaWQiOjEsImVtYWlsIjoibWFyaWFAZW1haWwuY29tIiwiaWF0IjoxNzY4Nzc0NTUzLCJleHAiOjE3Njg4NjA5NTN9.Ikk6Aywu-eTWBtgOSTRBoiVjpKuaZfS_4ifp7OPMCgU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer TOKEN_AQUI"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/solicitacoes-amizade",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"solicitacoes-amizade"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retorna Amigos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYSBpc2lzIiwiaWQiOjEsImVtYWlsIjoibWFyaWFAZW1haWwuY29tIiwiaWF0IjoxNzY4NzAwNDUwLCJleHAiOjE3Njg3ODY4NTB9.yAIAh-BH4aDYFmROre9H1F8zAvhs4SU55_aAsSRBZEU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/solicitacoes-amizade/amigos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"solicitacoes-amizade",
+						"amigos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Nova Postagem",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYSBpc2lzIiwiaWQiOjEsImVtYWlsIjoibWFyaWFAZW1haWwuY29tIiwiaWF0IjoxNzY5MDI3NDY0LCJleHAiOjE3NjkxMTM4NjR9.QEsMxxUlTYJt62tKcajzQEUa1IBgeCLH5sMSX1x_iJ0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"mensagem\": \"Tanto de besta de cauda é esse?\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/feed/postagem",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"feed",
+						"postagem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar Curtida",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYSBpc2lzIiwiaWQiOjEsImVtYWlsIjoibWFyaWFAZW1haWwuY29tIiwiaWF0IjoxNzY5MDI3NDY0LCJleHAiOjE3NjkxMTM4NjR9.QEsMxxUlTYJt62tKcajzQEUa1IBgeCLH5sMSX1x_iJ0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"idPostagem\": 1, \"idUsuario\": 3}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/feed/postagem/curtidas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"feed",
+						"postagem",
+						"curtidas"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
