@@ -27,56 +27,66 @@ Implemente uma **fila (queue)** usando um array de tamanho fixo com as seguintes
 ### **A. Classe `FilaSolicitacaoAmizade`**
 
 ```java
+import com.javagirls.social_media_ed.amizade.SolicitacaoAmizade;
+import com.javagirls.social_media_ed.amizade.SolicitacaoDTO;
+
 public class FilaSolicitacaoAmizade {
-    private static final int TAMANHO_MAXIMO = 100;
-    private SolicitacaoAmizade[] fila;
-    private int tamanhoAtual;
+   private static final int TAMANHO_MAXIMO = 100;
+   private SolicitacaoAmizade[] fila;
+   private int tamanhoAtual;
 
-    // Métodos a implementar:
+   // Métodos a implementar:
 
-    // 1. Adicionar solicitação ao final da fila (enfileirar)
-    public SolicitacaoAmizade enfileirar(SolicitacaoDTO solicitacaoDados) {
-        // TODO: Implementar
-        // - Converter DTO para SolicitacaoAmizade
-        // - Verificar se há espaço na fila
-        // - Adicionar no final do array
-        // - Atualizar tamanhoAtual
-        // - Retornar a solicitação enfileirada
-    }
+   // 1. Adicionar solicitação ao final da fila (enfileirar)
+   public SolicitacaoAmizade enfileirar(SolicitacaoDTO solicitacaoDados) {
 
-    // 2. Remover e retornar a solicitação mais antiga (desenfileirar)
-    public Optional<SolicitacaoAmizade> desenfileirar() {
-        // TODO: Implementar
-        // - Verificar se a fila está vazia
-        // - Remover a primeira solicitação (índice 0)
-        // - Deslocar todos os elementos restantes uma posição para frente
-        // - Atualizar tamanhoAtual
-        // - Retornar a solicitação removida (Optional)
-    }
+      SolicitacaoAmizade novaSolicitacao = solicitacaoDados;
+      if(fila != null){
+          throw RuntimeException();
+      }
+      fila[tamanhoAtual]
 
-    // 3. Verificar se a fila está vazia
-    public boolean estaVazia() {
-        // TODO: Implementar
-        // - Retornar true se tamanhoAtual == 0
-    }
+      // TODO: Implementar
+      // - Converter DTO para SolicitacaoAmizade
+      // - Verificar se há espaço na fila
+      // - Adicionar no final do array
+      // - Atualizar tamanhoAtual
+      // - Retornar a solicitação enfileirada
+   }
 
-    // 4. Verificar se a fila está cheia
-    public boolean estaCheia() {
-        // TODO: Implementar
-        // - Retornar true se tamanhoAtual == TAMANHO_MAXIMO
-    }
+   // 2. Remover e retornar a solicitação mais antiga (desenfileirar)
+   public Optional<SolicitacaoAmizade> desenfileirar() {
+      // TODO: Implementar
+      // - Verificar se a fila está vazia
+      // - Remover a primeira solicitação (índice 0)
+      // - Deslocar todos os elementos restantes uma posição para frente
+      // - Atualizar tamanhoAtual
+      // - Retornar a solicitação removida (Optional)
+   }
 
-    // 5. Obter tamanho atual da fila
-    public int getTamanhoAtual() {
-        return tamanhoAtual;
-    }
+   // 3. Verificar se a fila está vazia
+   public boolean estaVazia() {
+      // TODO: Implementar
+      // - Retornar true se tamanhoAtual == 0
+   }
 
-    // 6. Visualizar todas as solicitações na fila
-    public SolicitacaoAmizade[] imprimirFila() {
-        // TODO: Implementar
-        // - Retornar o array com as solicitações atuais
-        // - Considerar que posições vazias podem ser null
-    }
+   // 4. Verificar se a fila está cheia
+   public boolean estaCheia() {
+      // TODO: Implementar
+      // - Retornar true se tamanhoAtual == TAMANHO_MAXIMO
+   }
+
+   // 5. Obter tamanho atual da fila
+   public int getTamanhoAtual() {
+      return tamanhoAtual;
+   }
+
+   // 6. Visualizar todas as solicitações na fila
+   public SolicitacaoAmizade[] imprimirFila() {
+      // TODO: Implementar
+      // - Retornar o array com as solicitações atuais
+      // - Considerar que posições vazias podem ser null
+   }
 }
 
 ```

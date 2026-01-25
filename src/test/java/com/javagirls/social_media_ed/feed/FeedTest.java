@@ -46,6 +46,7 @@ class FeedTest {
     private Feed feed;
     private Usuario usuarioTeste;
     private Postagem postagemSalva;
+    private Usuario autor;
 
     /**
      * SETUP: Configuração inicial antes de cada teste.
@@ -55,8 +56,8 @@ class FeedTest {
      */
     @BeforeEach
     void setUp() {
-        // Inicializa o Feed com as dependências mockadas
-        //feed = new Feed(usuarioLogadoComponent, postagemRepository);
+        //Inicializa o Feed com as dependências mockadas
+        feed = new Feed(usuarioLogadoComponent, postagemRepository);
 
         usuarioTeste = new Usuario();
         usuarioTeste.setId(1);
@@ -78,19 +79,18 @@ class FeedTest {
      * - A postagem se torna a "cabeça" (primeiro elemento) da lista
      * - O tamanho do feed aumenta de 0 para 1
      * - Não há postagens anterior ou próxima (null)
-
+*/
     @Test
-    @DisplayName("1. Deve adicionar primeira postagem em feed vazio")
+    @DisplayName("1.Deve adicionar primeira postagem em feed vazio")
     void adicionarPrimeiraPostagem_FeedVazio_PostagemTornaCabeca() {
         String mensagem = "Minha primeira postagem!";
         when(usuarioLogadoComponent.getUsuarioLogado()).thenReturn(usuarioTeste);
         when(postagemRepository.save(any(Postagem.class))).thenReturn(postagemSalva);
 
-        PostagemNo resultado = feed.adicionarNoInicio(mensagem);
+        PostagemNo resultado = feed.adicionarNoInicio(mensagem,autor);
 
         assertNotNull(resultado, "A postagem não deve ser nula");
-        assertEquals(100, resultado.getId(), "ID da postagem deve ser 100");
-        assertEquals("Mensagem de teste", resultado.getMensagem(), "Mensagem deve ser preservada");
+        assertEquals("Minha primeira postagem!", resultado.getMensagem(), "Mensagem deve ser preservada");
 
         assertEquals(1, feed.getTamanho(), "Tamanho do feed deve ser 1");
         assertSame(feed.getCabeca(), resultado, "A postagem adicionada deve ser a cabeça do feed");

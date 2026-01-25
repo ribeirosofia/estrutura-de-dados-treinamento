@@ -49,7 +49,7 @@ public class AuthController {
             for(RegistroDTO registro : registros) {
                 Usuario usuario = authService.registrar(registro);
 
-                grafo.adicionarUsuario(usuario);
+//                grafo.adicionarUsuario(usuario);
 
                 response.put("message", "Usuário registrado com sucesso");
                 response.put("id", usuario.getId());

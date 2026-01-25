@@ -31,6 +31,14 @@ Implemente uma **lista duplamente encadeada** com as seguintes características:
 ### **A. Classe `Feed`**
 
 ```java
+import com.javagirls.social_media_ed.postagem.Postagem;
+import com.javagirls.social_media_ed.postagem.PostagemNo;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+@Service
 public class Feed {
     private PostagemNo cabeca;    // Primeiro nó da lista
     private int tamanho;          // Número total de postagens
@@ -39,6 +47,19 @@ public class Feed {
 
     // 1. Adicionar postagem no início do feed
     public PostagemNo adicionarNoInicio(String mensagem, Usuario autor) {
+        autor = usuarioLogadoComponent.getUsuarioLogado();
+        Postagem novaPostagem = new Postagem(mensagem, autor);
+        
+        PostagemNo novoNo = new PostagemNo(novaPostagem);
+        if(cabeca != null){
+            novoNo.setProximo(cabeca);
+            cabeca.setAnterior(novoNo);
+        }
+        
+        cabeca = novoNo;
+        tamanho++;
+        return novoNo;
+
         // TODO: Implementar
         // - Criar nova postagem
         // - Criar novo nó
@@ -49,6 +70,16 @@ public class Feed {
 
     // 2. Obter todas as postagens (do mais recente ao mais antigo)
     public List<PostagemNo> getTodasPostagens() {
+        
+        
+        List <Postagem> postagemList = new ArrayList<>();
+        for(int i = 0; i <= tamanho; i++){
+            if(!postagemList.isEmpty()){
+                postagemList.add(cabeca);
+            }
+        }
+        
+        
         // TODO: Implementar
         // - Percorrer a lista a partir da cabeça
         // - Coletar todos os nós em uma lista
